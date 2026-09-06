@@ -1,0 +1,82 @@
+{
+  "name": "auth-kit",
+  "version": "1.0.0",
+  "description": "Module d'authentification Node.js autonome — email/mot de passe + OAuth2 (Google, GitHub, générique) avec PKCE, JWT access/refresh avec rotation, adaptateur de stockage enfichable.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "authentication",
+    "authorization",
+    "oauth2",
+    "oauth",
+    "pkce",
+    "jwt",
+    "express",
+    "login",
+    "auth"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YannYours/auth-kit.git"
+  },
+  "author": "yannyours",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepublishOnly": "npm run build",
+    "dev": "tsx watch src/dev-server.ts",
+    "test": "node --test 'dist/**/*.test.js'"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express-rate-limit": "^7.4.1",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "peerDependencies": {
+    "better-sqlite3": "^11.0.0",
+    "express": "^4.19.0",
+    "mongodb": ">=5.0.0",
+    "mysql2": ">=3.0.0",
+    "pg": ">=8.0.0"
+  },
+  "peerDependenciesMeta": {
+    "better-sqlite3": { "optional": true },
+    "mongodb":        { "optional": true },
+    "mysql2":         { "optional": true },
+    "pg":             { "optional": true }
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/better-sqlite3": "^7.6.11",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/node": "^22.9.0",
+    "@types/pg": "^8.23.1",
+    "better-sqlite3": "^11.5.0",
+    "express": "^4.21.1",
+    "mongodb": "^7.6.0",
+    "mysql2": "^3.24.3",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

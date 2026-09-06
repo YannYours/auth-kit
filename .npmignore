@@ -1,0 +1,11 @@
+# Sources TypeScript — les utilisateurs reçoivent uniquement dist/
+src/
+
+# Config de dev
+tsconfig*.json
+.env*
+.gitignore
+
+# Logs et artefacts locaux
+*.log
+*.tgz
