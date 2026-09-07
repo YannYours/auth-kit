@@ -10,10 +10,13 @@ access/refresh avec rotation, et un adaptateur de stockage enfichable.
 npm install @yannyours/auth-kit
 ```
 
-Pour le stockage SQLite (inclus, pour déploiements single-instance) :
+Ajouter uniquement le driver de votre base de données :
 
 ```bash
-npm install better-sqlite3
+npm install better-sqlite3   # SQLite
+npm install pg               # PostgreSQL
+npm install mysql2           # MySQL / MariaDB
+npm install mongodb          # MongoDB
 ```
 
 ## Démarrage rapide
