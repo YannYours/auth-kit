@@ -1,4 +1,4 @@
-# auth-kit
+# @yannyours/auth-kit
 
 Module d'authentification Node.js autonome : e-mail/mot de passe + OAuth2
 (Google, GitHub, ou n'importe quel fournisseur standard) avec PKCE, JWT
@@ -7,7 +7,7 @@ access/refresh avec rotation, et un adaptateur de stockage enfichable.
 ## Installation
 
 ```bash
-npm install auth-kit
+npm install @yannyours/auth-kit
 ```
 
 Pour le stockage SQLite (inclus, pour déploiements single-instance) :
@@ -20,8 +20,8 @@ npm install better-sqlite3
 
 ```ts
 import express from "express";
-import { AuthKit, SqliteStorageAdapter, createAuthRouter, requireAuth } from "auth-kit";
-import type { AuthenticatedRequest } from "auth-kit";
+import { AuthKit, SqliteStorageAdapter, createAuthRouter, requireAuth } from "@yannyours/auth-kit";
+import type { AuthenticatedRequest } from "@yannyours/auth-kit";
 
 const storage = await SqliteStorageAdapter.create("./auth.db");
 
@@ -63,7 +63,7 @@ JWT_SECRET=une-chaine-aleatoire-longue-min-32-chars
 ## OAuth2 (Google, GitHub, custom)
 
 ```ts
-import { googleProvider, githubProvider, genericProvider } from "auth-kit";
+import { googleProvider, githubProvider, genericProvider } from "@yannyours/auth-kit";
 
 const authKit = new AuthKit({
   storage,
@@ -110,7 +110,7 @@ const microsoft = genericProvider({
 
 ## Adaptateurs de stockage
 
-auth-kit inclut quatre adaptateurs prêts à l'emploi. Seul `express` est une
+@yannyours/auth-kit inclut quatre adaptateurs prêts à l'emploi. Seul `express` est une
 dépendance obligatoire — chaque adaptateur de base de données est une peer
 dependency optionnelle : installez uniquement ce que vous utilisez.
 
@@ -121,7 +121,7 @@ npm install better-sqlite3
 ```
 
 ```ts
-import { SqliteStorageAdapter } from "auth-kit";
+import { SqliteStorageAdapter } from "@yannyours/auth-kit";
 const storage = await SqliteStorageAdapter.create("./auth.db");
 ```
 
@@ -138,7 +138,7 @@ npm install pg
 
 ```ts
 import { Pool } from "pg";
-import { PostgresStorageAdapter } from "auth-kit";
+import { PostgresStorageAdapter } from "@yannyours/auth-kit";
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 const storage = new PostgresStorageAdapter(pool);
@@ -181,7 +181,7 @@ npm install mysql2
 
 ```ts
 import mysql from "mysql2/promise";
-import { MysqlStorageAdapter } from "auth-kit";
+import { MysqlStorageAdapter } from "@yannyours/auth-kit";
 
 const pool = mysql.createPool({ uri: process.env.DATABASE_URL });
 const storage = new MysqlStorageAdapter(pool);
@@ -224,7 +224,7 @@ npm install mongodb
 
 ```ts
 import { MongoClient } from "mongodb";
-import { MongoStorageAdapter } from "auth-kit";
+import { MongoStorageAdapter } from "@yannyours/auth-kit";
 
 const client = new MongoClient(process.env.MONGODB_URI!);
 await client.connect();
@@ -245,7 +245,7 @@ automatiquement au premier appel de `create()`, avec :
 Implémentez l'interface `StorageAdapter` et passez-la à `AuthKit` :
 
 ```ts
-import type { StorageAdapter } from "auth-kit";
+import type { StorageAdapter } from "@yannyours/auth-kit";
 
 class MonPrismaAdapter implements StorageAdapter {
   async findUserByEmail(email: string) { return prisma.authUser.findUnique({ where: { email } }); }
